@@ -53,7 +53,7 @@ def delete_todolist(id):
     return redirect(url_for('show_todolist'))
 
 
-@app.route('/change/<int:id>', methods=['GET', 'POST"'])
+@app.route('/change/<int:id>', methods=['GET', 'POST'])
 @login_required
 def change_todolist(id):
     if request.method == 'GET':
@@ -66,10 +66,11 @@ def change_todolist(id):
         form = ToDoListForm()
         if form.validate_on_submit():
             todolist = ToDoList.query.filter_by(id=id).first_or_404()
+            print todolist
             todolist.title = form.title.data
             todolist.status = form.status.data
             db.session.commit()
-            flash('添加成功')
+            flash('修改成功')
         else:
             flash(form.errors)
         return redirect(url_for('show_todolist'))

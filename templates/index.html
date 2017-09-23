@@ -9,7 +9,8 @@
         <th class="active">描述</th>
         <th class="active">是否完成</th>
         <th class="active">创建时间</th>
-        <th class='active'>操作</th> 
+        <th class='active'>修改</th>
+        <th class='active'>删除</th>
     </thead>
     <tbody>
         {% for todo in todolist %}
@@ -21,13 +22,8 @@
                 <td>{{ todo.title }}</td>
                 <td>{{ todo.status }}</td>
                 <td>{{ todo.create_time }}</td>
-                <td>
-                    {% if todo.status %}
-                    <a href="{{ url_for('delete_todolist', id=todo.id) }}" class="btn btn-danger" role ="button">删除</a>
-                    {% else %}
-                    <a href="{{ url_for('change_todolist', id=todo.id) }}" class="btn btn-success" role ="button">修改</a>
-                    {% endif %}
-                </td>
+                <td><a href="{{ url_for('change_todolist', id=todo.id) }}" class="btn btn-success" role ="button">修改</a></td>
+                <td><a href="{{ url_for('delete_todolist', id=todo.id) }}" class="btn btn-danger" role ="button">删除</a>
 
             </tr>
         {% endfor %}
